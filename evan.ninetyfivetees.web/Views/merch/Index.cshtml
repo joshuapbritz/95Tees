@@ -6,7 +6,7 @@
 <div class="shop">
     @foreach (var item in Model)
     {
-        <a asp-action="Delete" asp-route-id="@item.Id" class="shop-card">
+        <a asp-action="view" asp-route-id="@item.Id" class="shop-card">
             <div class="image" style="background-image: url('@item.Design.Image')"></div>
             <div class="title">
                 <h2>@item.Title</h2>

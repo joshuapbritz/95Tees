@@ -26,6 +26,7 @@ namespace evan.ninetyfivetees.web.Controllers
         }
 
         // GET: merch/Details/5
+        [ActionName("view")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,7 +44,7 @@ namespace evan.ninetyfivetees.web.Controllers
                 return NotFound();
             }
 
-            return View(shirts);
+            return View("Details", shirts);
         }
 
         // GET: merch/Create
