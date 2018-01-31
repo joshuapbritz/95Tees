@@ -12,7 +12,6 @@ namespace evan.ninetyfivetees.web.Models
 
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Image { get; set; }
 
         public ICollection<Shirts> Shirts { get; set; }
     }

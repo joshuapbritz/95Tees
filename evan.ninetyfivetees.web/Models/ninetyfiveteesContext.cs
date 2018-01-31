@@ -35,6 +35,8 @@ namespace evan.ninetyfivetees.web.Models
 
                 entity.Property(e => e.DesignId).HasColumnName("designId");
 
+                entity.Property(e => e.Image).HasColumnName("image");
+
                 entity.Property(e => e.Price).HasColumnName("price");
 
                 entity.Property(e => e.SizeId).HasColumnName("sizeId");

@@ -1,13 +1,22 @@
 ﻿@model IEnumerable<evan.ninetyfivetees.web.Models.Shirts>
 @{
     ViewData["Title"] = "Index";
+    ViewData["activePage"] = "shop";
 }
 
-<div class="shop">
+
+<div class="shop-grid">
     @foreach (var item in Model)
     {
-        <a asp-action="view" asp-route-id="@item.Id" class="shop-card">
-            <div class="image" style="background-image: url('@item.Design.Image')"></div>
+        <a asp-action="view" asp-route-id="@item.Id" class="shop-item" style="background-image: url('@item.Image')">
+            <div class="view-overlay">
+                <div class="content">
+                    <div class="title">@item.Title</div>
+                    <div class="design">@item.Design.Name.ToUpper()</div>
+                    <div class="price">@item.Price</div>
+                </div>
+            </div>
+            @*<div class="image"></div>
             <div class="title">
                 <h2>@item.Title</h2>
             </div>
@@ -21,7 +30,7 @@
                     <li><b>Design: </b>@item.Design.Name</li>
                     <li><b>Size: </b>@item.Size.Name</li>
                 </ul>
-            </div>
+            </div>*@
         </a>
     }
 </div>

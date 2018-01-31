@@ -1,0 +1,82 @@
+﻿.slider {
+    width: 100%;
+    height: 85vh;
+    overflow: hidden;
+    position: relative;
+
+    .slide-item {
+        display: block;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        background-position: center center;
+        background-size: cover;
+        top: 0;
+        right: -100%;
+
+        .overlay {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.3);
+            display: block;
+            position: relative;
+        }
+    }
+
+    .next,
+    .previous {
+        position: absolute;
+        top: 50%;
+        margin-top: -30px;
+        width: 60px;
+        height: 60px;
+        background-color: #ffffff;
+        z-index: 10;
+    }
+
+    .next {
+        right: 0;
+    }
+
+    .previous {
+        left: 0;
+    }
+
+    .navigator {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        height: 7px;
+        left: 50%;
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        font-size: 0;
+        white-space: nowrap;
+        z-index: 20;
+        text-align: center;
+
+        .bar {
+            height: 100%;
+            width: 50px;
+            background-color: #fff;
+            -moz-border-radius: 15px;
+            -webkit-border-radius: 15px;
+            border-radius: 15px;
+            margin: 0 5px;
+            display: inline-block;
+            cursor: pointer;
+
+            &:hover {
+                background-color: transparentize(#333333, 0.5);
+            }
+
+            &.active {
+                background-color: #333333;
+            }
+        }
+    }
+}

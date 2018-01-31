@@ -4,5 +4,108 @@
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 300;
 
+    &.inverse {
+        background-color: #ffffff;
+        position: sticky;
+
+        .logo {
+            color: #333;
+        }
+
+        .nav .nav-item.active {
+            background-color: rgba(0,0,0,0.1);
+        }
+
+        .nav .nav-item a {
+            color: #333333;
+        }
+    }
+
+    .logo {
+        display: block;
+        height: 100%;
+        float: left;
+        width: auto;
+        text-decoration: none;
+        line-height: 80px;
+        color: #ffffff;
+        font-size: 30px;
+        font-weight: 300;
+        padding: 0 15px;
+    }
+
+    .nav {
+        list-style: none;
+        height: 100%;
+        width: auto;
+        padding: 0;
+        margin: 0;
+        float: right;
+
+        .nav-item {
+            display: block;
+            float: left;
+            height: 100%;
+
+            &.active {
+                background-color: rgba(255,255,255,0.2);
+            }
+
+            a {
+                display: block;
+                height: 100%;
+                width: auto;
+                line-height: 80px;
+                color: #ffffff;
+                text-decoration: none;
+                padding: 0 20px;
+                text-transform: capitalize;
+            }
+
+            &.account {
+
+                a {
+                    position: relative;
+
+                    &::before,
+                    &::after {
+                        content: '';
+                        display: block;
+                        height: 2px;
+                        left: 50%;
+                        position: absolute;
+                        -moz-transform: translateX(-50%);
+                        -ms-transform: translateX(-50%);
+                        -o-transform: translateX(-50%);
+                        -webkit-transform: translateX(-50%);
+                        transform: translateX(-50%);
+                        bottom: 20px;
+                    }
+
+                    &::before {
+                        background-color: #333333;
+                        z-index: 10;
+                        width: 0;
+                        -moz-transition: ease 300ms;
+                        -o-transition: ease 300ms;
+                        -webkit-transition: ease 300ms;
+                        transition: ease 300ms;
+                    }
+
+                    &::after {
+                        width: calc(100% - 40px);
+                        background-color: #ffffff;
+                    }
+
+                    &:hover {
+                        &::before {
+                            width: calc(100% - 40px);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

@@ -1,14 +1,23 @@
 ﻿@model IEnumerable<evan.ninetyfivetees.web.Models.Shirts>
 @{
     ViewData["Title"] = "Home";
+    ViewData["activePage"] = "home";
 }
 
 
-<div class="siema">
+<div class="slider">
     @foreach (Shirts item in Model)
     {
-        <div class="slide-item" style="background-image:url(@item.Design.Image)">
-            <h1>@item.Title</h1>
+        <div class="slide-item" style="background-image:url(@item.Image)">
+            <div class="overlay">
+                <div class="content">
+                    <span class="title">@item.Title</span>
+                    <p>@item.Description</p>
+                    <a asp-controller="merch" asp-action="view" asp-route-id="@item.Id" class="button light lined">View Deal</a>
+                </div>
+            </div>
         </div>
     }
+    <div class="navigator"></div>
 </div>
+<script src="~/js/slider.js" asp-append-version="true"></script>
