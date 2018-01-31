@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - evan.ninetyfivetees.web</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="~/css/nouislider.min.css" rel="stylesheet" />
     <environment include="Development">
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
@@ -32,6 +33,9 @@
             </li>
             <li class="nav-item @(ViewData["activePage"].ToString() == "shop" ? "active": "")">
                 <a asp-controller="merch" asp-action="">shop</a>
+            </li>
+            <li class="nav-item @(ViewData["activePage"].ToString() == "about" ? "active": "")">
+                <a asp-controller="about" asp-action="">about</a>
             </li>
             @await Html.PartialAsync("_LoginPartial")
         </ul>
@@ -60,6 +64,35 @@
         </nav>*@
 
     @RenderBody()
+
+    <footer class="footer">
+        <div class="container">
+            <ul class="col">
+                <li class="nav-item">
+                    <a asp-controller="" asp-action="">home</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="merch" asp-action="">shop</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="about" asp-action="">about</a>
+                </li>
+            </ul>
+
+            <ul class="col">
+                <li class="contact-item">
+                    Email: <a href="mailto:evan@email.com">evan@email.com</a>
+                </li>
+                <li class="contact-item">
+                    Phone: <a href="tel:0000000000">0000000000</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="copy">
+            <span>&copy; @String.Format("{0}.", DateTime.Now.Year) All Rights Reserved.</span>
+        </div>
+    </footer>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.5.1/velocity.min.js"></script>
     @*<script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.5.1/velocity.ui.min.js"></script>*@

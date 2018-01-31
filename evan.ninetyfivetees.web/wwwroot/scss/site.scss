@@ -3,8 +3,10 @@
 @import './components//slider';
 @import './components/buttons';
 @import './components/shop.items';
+@import './components//footer';
 
 .slide-item .overlay {
+    padding: 10px;
     .content {
         position: absolute;
         bottom: 50px;
@@ -15,6 +17,183 @@
         .title {
             font-size: 20px;
         }
-
     }
+}
+
+.homepage-about {
+    padding: 70px 0;
+
+    .entry-content {
+        width: 90%;
+        max-width: 1000px;
+        margin: auto;
+
+        h1 {
+            text-transform: uppercase;
+        }
+
+        .actions {
+            padding: 14px 0;
+        }
+    }
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+
+    &::after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+.about-title {
+    font-size: 50px;
+}
+
+.about-body {
+    text-align: justify;
+    word-spacing: 2px;
+    line-height: 1.6;
+}
+
+.shop-categories {
+    width: 100%;
+    height: 100vh;
+
+    .col {
+        width: 50%;
+        height: 100%;
+        float: left;
+        background-size: cover;
+        background-position: center center;
+        position: relative;
+        display: block;
+        text-decoration: none;
+        -moz-transition: ease 200ms;
+        -o-transition: ease 200ms;
+        -webkit-transition: ease 200ms;
+        transition: ease 200ms;
+        cursor: pointer;
+
+        &:hover {
+            background-position: top right;
+        }
+
+        .overlay {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            position: relative;
+
+            span {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                -moz-transform: translate(-50%, -50%);
+                -ms-transform: translate(-50%, -50%);
+                -o-transform: translate(-50%, -50%);
+                -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                color: #ffffff;
+                text-transform: uppercase;
+            }
+        }
+
+        &.male {
+            background-image: url(https://images.pexels.com/photos/432059/pexels-photo-432059.jpeg?w=940&h=650&auto=compress&cs=tinysrgb);
+        }
+
+        &.female {
+            background-image: url(https://images.pexels.com/photos/192536/pexels-photo-192536.jpeg?w=940&h=650&auto=compress&cs=tinysrgb);
+        }
+    }
+}
+
+.search-toolbar {
+    width: 100%;
+    height: auto;
+    background-color: #eee;
+    overflow-y: auto;
+
+    .modify-search {
+        width: 90%;
+        max-width: 450px;
+        margin: auto;
+        display: block;
+        overflow: hidden;
+
+        .form-row {
+            width: 100%;
+            height: auto;
+            padding: 20px 0;
+            text-align: center;
+
+            input, select {
+                width: 100%;
+                height: 40px;
+                text-indent: 10px;
+                border: solid 1px #000000;
+            }
+        }
+    }
+
+    .action, .title {
+        padding: 15px;
+        text-align: center;
+    }
+}
+
+.noUi-handle {
+    height: 40px !important;
+    top: 0 !important;
+    width: 40px !important;
+    border-radius: unset !important;
+    border: none !important;
+    box-shadow: none !important;
+    background-color: #333333;
+    cursor: col-resize;
+
+    &::before,
+    &::after {
+        display: none;
+    }
+
+    &.noUi-handle-upper {
+        left: -40px !important;
+    }
+
+    &.noUi-handle-lower {
+        left: 0 !important;
+    }
+}
+
+.noUi-base,
+.noUi-target {
+    border: none;
+    background-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+    border-radius: 0 !important;
+    height: 40px;
+}
+
+
+.noUi-connect {
+    height: 40px !important;
+    background-color: #fff !important;
+    border: none;
+    outline: none !important;
+    box-shadow: none !important;
+    cursor: move;
+    border-radius: none !important;
+}
+
+.noUi-base {
+    height: 40px;
+    border: solid 1px #000000;
 }

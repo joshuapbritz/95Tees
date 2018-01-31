@@ -19,10 +19,43 @@ namespace evan.ninetyfivetees.web.Controllers
         }
 
         // GET: merch
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int minPrice = 0, int maxPrice = 0, int size = 0, int gender = 0, int design = 0, int season = 0)
         {
-            var ninetyfiveteesContext = _context.Shirts.Include(s => s.Color).Include(s => s.Design).Include(s => s.Size);
-            return View(await ninetyfiveteesContext.ToListAsync());
+            var ninetyfiveteesContext = _context.Shirts.Include(s => s.Color).Include(s => s.Design).Include(s => s.Size).Include(s => s.Gender).Include(s => s.Season);
+            IQueryable<Shirts> data = ninetyfiveteesContext;
+
+            if (design != 0)
+            {
+                data = data.Where(c => c.DesignId == design);
+                ViewData["designId"] = design;
+            }
+
+            if (size != 0)
+            {
+                data = data.Where(c => c.SizeId == size);
+                ViewData["sizeId"] = size;
+            }
+
+            if (gender != 0)
+            {
+                data = data.Where(c => c.GenderId == gender);
+                ViewData["genderId"] = gender;
+            }
+
+            if (season != 0)
+            {
+                data = data.Where(c => c.SeasonId == season);
+                ViewData["SeasonId"] = season;
+            }
+
+            if (maxPrice != 0)
+            {
+                data = data.Where(c => c.Price >= minPrice && c.Price <= maxPrice);
+                ViewData["minPrice"] = minPrice;
+                ViewData["maxPrice"] = maxPrice;
+            }
+
+            return View(await data.ToListAsync());
         }
 
         // GET: merch/Details/5
@@ -61,7 +94,7 @@ namespace evan.ninetyfivetees.web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,DesignId,SizeId,ColorId,Description,Title,Price")] Shirts shirts)
+        public async Task<IActionResult> Create(Shirts shirts)
         {
             if (ModelState.IsValid)
             {

@@ -2,7 +2,96 @@
 @{
     ViewData["Title"] = "Index";
     ViewData["activePage"] = "shop";
+    int minPiceRnage = ViewData["minPrice"] != null ? Convert.ToInt32(ViewData["minPrice"]) : 0;
+    int maxPiceRnage = ViewData["maxPrice"] != null ? Convert.ToInt32(ViewData["maxPrice"]) : 1000;
 }
+
+<div class="search-toolbar">
+    @*<div class="title">Modify Search</div>*@
+    <div class="modify-search closed" id="search-modifier" style="height: 0;">
+        <form action="/merch" method="get" class="searchform">
+            <div class="form-row">
+                <label>Shirt Gender</label>
+                <select>
+                    <option value="">All</option>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label>Shirt Price Range</label>
+                <input type="hidden" name="minPrice" id="minPrice" />
+                <input type="hidden" name="maxPrice" id="maxPrice" />
+                <div id="priceSlider"></div>
+                <script src="~/js/nouislider.min.js"></script>
+                <script>
+                    var slider = document.getElementById('priceSlider');
+                    noUiSlider.create(slider, {
+                        start: [@minPiceRnage, @maxPiceRnage],
+                        connect: true,
+                        behaviour: 'tap-drag',
+                        //tooltips: true,
+                        margin: 150,
+                        step: 50,
+                        range: {
+                            min: 0,
+                            max: 1000
+                        }
+                    });
+
+                    slider.noUiSlider.on('update', function (v) {
+                        var min = Number(v[0]);
+                        var max = Number(v[1]);
+                        console.log(`${min} \ ${max}`);
+                        document.getElementById('minPrice').value = min;
+                        document.getElementById('maxPrice').value = max;
+                    })
+                </script>
+            </div>
+
+            <div class="form-row">
+                <label>Shirt Season</label>
+                <select name="season" value="@ViewData["SeasonId"]">
+                    <option value="">All</option>
+                    <option value="1">Summer</option>
+                    <option value="2">Winter</option>
+                    <option value="3">Autumn</option>
+                    <option value="4">Spring</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label>Shirt Size</label>
+                <select>
+                    <option value="">All</option>
+                    <option value="1">Small</option>
+                    <option value="2">Medium</option>
+                    <option value="3">Large</option>
+                    <option value="4">Giant</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label>Shirt Type</label>
+                <select>
+                    <option value="">All</option>
+                    <option value="1">Longsleeve Shirt</option>
+                    <option value="2">Hip Tee</option>
+                    <option value="3">Coat</option>
+                    <option value="4">Pullover</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <button class="button dark lined">search</button>
+            </div>
+        </form>
+    </div>
+    <div class="action">
+        <button class="button dark" onclick="accordian('search-modifier', this)">Modify Search</button>
+    </div>
+</div>
 
 
 <div class="shop-grid">
@@ -13,24 +102,9 @@
                 <div class="content">
                     <div class="title">@item.Title</div>
                     <div class="design">@item.Design.Name.ToUpper()</div>
-                    <div class="price">@item.Price</div>
+                    <div class="price">@String.Format("{0:C}", item.Price)</div>
                 </div>
             </div>
-            @*<div class="image"></div>
-            <div class="title">
-                <h2>@item.Title</h2>
-            </div>
-            <div class="description">
-                <p>
-                    @item.Description
-                </p>
-                <ul class="description-list">
-                    <li><b>Price: </b>@item.Price</li>
-                    <li><b>Color: </b>@item.Color.Name</li>
-                    <li><b>Design: </b>@item.Design.Name</li>
-                    <li><b>Size: </b>@item.Size.Name</li>
-                </ul>
-            </div>*@
         </a>
     }
 </div>

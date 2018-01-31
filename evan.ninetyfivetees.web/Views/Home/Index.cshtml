@@ -21,3 +21,32 @@
     <div class="navigator"></div>
 </div>
 <script src="~/js/slider.js" asp-append-version="true"></script>
+
+<div class="homepage-about">
+    <div class="entry-content">
+        <h1>Welcome to 95 Tees</h1>
+        <p class="about-body">
+            Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
+            Tincidunt integer eu augue augue nunc elit dolor, aliquam sit amet justo nunc tempor, metus vel.
+            Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
+        </p>
+        <div class="actions">
+            <a href="#" class="button dark lined">Find out more</a>
+            <a asp-controller="merch" asp-action="" class="button dark">Shop Now</a>
+        </div>
+    </div>
+</div>
+
+<div class="shop-categories">
+    <a asp-controller="merch" asp-action="" asp-route-gender="1" class="male col">
+        <div class="overlay">
+            <span>Shop Male Shirts</span>
+        </div>
+    </a>
+
+    <a asp-controller="merch" asp-action="" asp-route-gender="2" class="female col">
+        <div class="overlay">
+            <span>Shop Female Shirts</span>
+        </div>
+    </a>
+</div>

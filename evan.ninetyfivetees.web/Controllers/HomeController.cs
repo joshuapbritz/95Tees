@@ -20,13 +20,13 @@ namespace evan.ninetyfivetees.web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<Shirts> shirts = await _context.Shirts.Include(s => s.Color).Include(s => s.Design).Include(s => s.Size).Take(6).ToListAsync();
+            List<Shirts> shirts = await _context.Shirts.Include(s => s.Color).Include(s => s.Design).Include(s => s.Size).Take(5).ToListAsync();
             return View(shirts);
         }
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["activePage"] = "about";
 
             return View();
         }
