@@ -17,7 +17,7 @@ using evan.ninetyfivetees.web.Services;
 namespace evan.ninetyfivetees.web.Controllers
 {
     [Authorize]
-    [Route("[controller]/[action]")]
+    //[Route("[controller]/[action]")]
     public class ManageController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

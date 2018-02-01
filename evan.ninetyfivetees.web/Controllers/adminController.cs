@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using evan.ninetyfivetees.web.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace evan.ninetyfivetees.web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class adminController : Controller
     {
         private readonly ninetyfiveteesContext _context;
@@ -19,16 +21,21 @@ namespace evan.ninetyfivetees.web.Controllers
         }
 
         // GET: admin
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Shirts()
         {
             var ninetyfiveteesContext = _context.Shirts
-                .Include(s => s.Color)
-                .Include(s => s.Design)
-                .Include(s => s.Gender)
-                .Include(s => s.IdNavigation)
-                .Include(s => s.Season)
-                .Include(s => s.ShirtSizes)
-                .Include("ShirtSizes.Size");
+            .Include(s => s.Color)
+            .Include(s => s.Design)
+            .Include(s => s.Gender)
+            .Include(s => s.IdNavigation)
+            .Include(s => s.Season)
+            .Include(s => s.ShirtSizes)
+            .Include("ShirtSizes.Size");
             return View(await ninetyfiveteesContext.ToListAsync());
         }
 

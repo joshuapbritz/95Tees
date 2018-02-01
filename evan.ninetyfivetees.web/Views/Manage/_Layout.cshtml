@@ -2,20 +2,27 @@
     Layout = "/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Manage your account</h2>
 
-<div>
-    <h4>Change your account settings</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-3">
-            @await Html.PartialAsync("_ManageNav")
-        </div>
-        <div class="col-md-9">
-            @RenderBody()
-        </div>
-    </div>
+<div class="manage-account">
+    <nav class="sidebar">
+        <ul class="nav">
+            <li>
+                <a asp-controller="Manage">My Account</a>
+            </li>
+            <li>
+                <a asp-controller="Manage" asp-action="ChangePassword">Change Password</a>
+            </li>
+            <li>
+                <a href="#">Cart</a>
+            </li>
+            <li>
+                <a asp-controller="Account" asp-action="Logout">Logout</a>
+            </li>
+        </ul>
+    </nav>
+    @RenderBody()
 </div>
+
 
 @section Scripts {
     @RenderSection("Scripts", required: false)

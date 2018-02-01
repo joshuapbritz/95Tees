@@ -1,10 +1,14 @@
 ﻿@model IndexViewModel
 @{
     ViewData["Title"] = "Profile";
-    ViewData.AddActivePage(ManageNavPages.Index);
+    //ViewData.AddActivePage(ManageNavPages.Index);
 }
 
-<h4>@ViewData["Title"]</h4>
+<div class="account-overview">
+    <h1>@Model.Email</h1>
+</div>
+
+@*<h4>@ViewData["Title"]</h4>
 @Html.Partial("_StatusMessage", Model.StatusMessage)
 <div class="row">
     <div class="col-md-6">
@@ -38,8 +42,8 @@
             <button type="submit" class="btn btn-default">Save</button>
         </form>
     </div>
-</div>
+</div>*@
 
-@section Scripts {
+@*@section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
-}
+}*@
