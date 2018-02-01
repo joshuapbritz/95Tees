@@ -71,6 +71,8 @@ namespace evan.ninetyfivetees.web.Controllers
                 .Include(s => s.Color)
                 .Include(s => s.Design)
                 .Include(s => s.Size)
+                .Include(s => s.Gender)
+                .Include(s => s.Season)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (shirts == null)
             {
@@ -83,9 +85,11 @@ namespace evan.ninetyfivetees.web.Controllers
         // GET: merch/Create
         public IActionResult Create()
         {
-            ViewData["ColorId"] = new SelectList(_context.Color, "Id", "Id");
-            ViewData["DesignId"] = new SelectList(_context.Designs, "Id", "Id");
-            ViewData["SizeId"] = new SelectList(_context.Size, "Id", "Id");
+            ViewData["ColorId"] = new SelectList(_context.Color, "Id", "Name");
+            ViewData["DesignId"] = new SelectList(_context.Designs, "Id", "Name");
+            ViewData["SizeId"] = new SelectList(_context.Size, "Id", "Name");
+            ViewData["SeasonId"] = new SelectList(_context.YearSeasons, "Id", "Name");
+            ViewData["GenderId"] = new SelectList(_context.Genders, "Id", "Description");
             return View();
         }
 

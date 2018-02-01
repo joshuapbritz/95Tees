@@ -5,7 +5,37 @@
     ViewData["activePage"] = "shop";
 }
 
-<h2>Details</h2>
+@*<div class="product-hero" style="background-image:url(@Model.Image)">
+        <div class="overlay">
+            <div class="content">
+                @Model.Title
+            </div>
+        </div>
+    </div>*@
+
+<div class="product-overview">
+    <div class="container-fluid">
+        <div class="image" style="background-image:url(@Model.Image)"></div>
+        <div class="description">
+            <div class="availability @(Model.Instock == true ? "in" : "out")">This item is @(Model.Instock == true ? "" : "not") in Stock</div>
+            <div class="product-name">
+                <h1>@Model.Title</h1>
+            </div>
+            <div class="price">
+                <h3>@String.Format("{0:C}", Model.Price)</h3>
+            </div>
+            <hr align="left" />
+            <p>
+                @Model.Description
+            </p>
+            <hr align="left" />
+            <div class="season">For <a asp-controller="merch" asp-action="" asp-route-season="@Model.SeasonId">@Model.Season.Name.ToUpper()</a> weather</div>
+            <br />
+            <button class="button dark">Buy Now</button>
+            <button class="button dark lined">Add to Cart</button>
+        </div>
+    </div>
+</div>
 
 <div>
     <h4>Shirts</h4>

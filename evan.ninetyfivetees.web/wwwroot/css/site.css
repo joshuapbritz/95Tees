@@ -283,6 +283,64 @@ body {
     padding: 7px 0;
     color: #888; }
 
+.product-hero {
+  width: 100%;
+  height: 50vh;
+  background-position: center center;
+  background-size: cover; }
+  .product-hero .overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: relative; }
+    .product-hero .overlay .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      color: #ffffff;
+      font-size: 50px;
+      letter-spacing: 7px;
+      font-weight: 900;
+      text-transform: uppercase;
+      width: 100%;
+      text-align: center; }
+
+.product-overview {
+  padding: 100px 20px; }
+  .product-overview .image {
+    width: 30%;
+    height: 500px;
+    float: left;
+    margin-right: 100px;
+    background-position: center center;
+    background-size: cover; }
+  .product-overview .description {
+    width: calc(70% - 100px);
+    float: left;
+    height: auto; }
+    .product-overview .description .availability {
+      background-color: #fff;
+      padding: 3px;
+      font-size: 12px;
+      text-transform: uppercase; }
+    .product-overview .description .product-name h1 {
+      margin: 10px 0;
+      font-size: 30px;
+      font-weight: 600; }
+    .product-overview .description hr {
+      width: 50%;
+      height: 2px;
+      background-color: #ddd;
+      border: 0;
+      margin: 25px 0; }
+    .product-overview .description .season a {
+      color: #333333; }
+
 .slide-item .overlay {
   padding: 10px; }
   .slide-item .overlay .content {
@@ -425,4 +483,13 @@ body {
 .noUi-base {
   height: 40px;
   border: solid 1px #000000; }
+
+.container-fluid {
+  width: 99%;
+  height: auto;
+  margin: auto; }
+  .container-fluid::after {
+    content: '';
+    display: table;
+    clear: both; }
 

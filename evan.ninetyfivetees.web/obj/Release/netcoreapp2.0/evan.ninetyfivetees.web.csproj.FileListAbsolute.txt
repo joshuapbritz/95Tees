@@ -1,0 +1,12 @@
+C:\Users\Joshua\source\repos\evan.ninetyfivetees.web\evan.ninetyfivetees.web\bin\Release\netcoreapp2.0\evan.ninetyfivetees.web.deps.json
+C:\Users\Joshua\source\repos\evan.ninetyfivetees.web\evan.ninetyfivetees.web\bin\Release\netcoreapp2.0\evan.ninetyfivetees.web.runtimeconfig.json
+C:\Users\Joshua\source\repos\evan.ninetyfivetees.web\evan.ninetyfivetees.web\bin\Release\netcoreapp2.0\evan.ninetyfivetees.web.runtimeconfig.dev.json
+C:\Users\Joshua\source\repos\evan.ninetyfivetees.web\evan.ninetyfivetees.web\bin\Release\netcoreapp2.0\evan.ninetyfivetees.web.dll
+C:\Users\Joshua\source\repos\evan.ninetyfivetees.web\evan.ninetyfivetees.web\bin\Release\netcoreapp2.0\evan.ninetyfivetees.web.pdb
+C:\Users\Joshua\source\repos\evan.ninetyfivetees.web\evan.ninetyfivetees.web\obj\Release\netcoreapp2.0\evan.ninetyfivetees.web.csprojResolveAssemblyReference.cache
+C:\Users\Joshua\source\repos\evan.ninetyfivetees.web\evan.ninetyfivetees.web\obj\Release\netcoreapp2.0\evan.ninetyfivetees.web.csproj.CoreCompileInputs.cache
+C:\Users\Joshua\source\repos\evan.ninetyfivetees.web\evan.ninetyfivetees.web\obj\Release\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\Joshua\source\repos\evan.ninetyfivetees.web\evan.ninetyfivetees.web\obj\Release\netcoreapp2.0\evan.ninetyfivetees.web.AssemblyInfoInputs.cache
+C:\Users\Joshua\source\repos\evan.ninetyfivetees.web\evan.ninetyfivetees.web\obj\Release\netcoreapp2.0\evan.ninetyfivetees.web.AssemblyInfo.cs
+C:\Users\Joshua\source\repos\evan.ninetyfivetees.web\evan.ninetyfivetees.web\obj\Release\netcoreapp2.0\evan.ninetyfivetees.web.dll
+C:\Users\Joshua\source\repos\evan.ninetyfivetees.web\evan.ninetyfivetees.web\obj\Release\netcoreapp2.0\evan.ninetyfivetees.web.pdb
