@@ -10,11 +10,11 @@ namespace evan.ninetyfivetees.web.Models
         public virtual DbSet<Designs> Designs { get; set; }
         public virtual DbSet<Genders> Genders { get; set; }
         public virtual DbSet<Shirts> Shirts { get; set; }
+        public virtual DbSet<ShirtSizes> ShirtSizes { get; set; }
         public virtual DbSet<Size> Size { get; set; }
         public virtual DbSet<YearSeasons> YearSeasons { get; set; }
 
-        public ninetyfiveteesContext(DbContextOptions<ninetyfiveteesContext> options)
-    : base(options)
+        public ninetyfiveteesContext(DbContextOptions<ninetyfiveteesContext> options) : base(options)
         { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -42,7 +42,17 @@ namespace evan.ninetyfivetees.web.Models
 
             modelBuilder.Entity<Shirts>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.HasIndex(e => e.ColorId);
+
+                entity.HasIndex(e => e.DesignId);
+
+                entity.HasIndex(e => e.GenderId);
+
+                entity.HasIndex(e => e.SeasonId);
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.ColorId).HasColumnName("colorId");
 
@@ -61,8 +71,6 @@ namespace evan.ninetyfivetees.web.Models
                 entity.Property(e => e.Price).HasColumnName("price");
 
                 entity.Property(e => e.SeasonId).HasColumnName("seasonId");
-
-                entity.Property(e => e.SizeId).HasColumnName("sizeId");
 
                 entity.Property(e => e.Title)
                     .HasColumnName("title")
@@ -83,15 +91,37 @@ namespace evan.ninetyfivetees.web.Models
                     .HasForeignKey(d => d.GenderId)
                     .HasConstraintName("FK_Shirts_genders");
 
+                entity.HasOne(d => d.IdNavigation)
+                    .WithOne(p => p.InverseIdNavigation)
+                    .HasForeignKey<Shirts>(d => d.Id)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Shirts_Shirts1");
+
                 entity.HasOne(d => d.Season)
                     .WithMany(p => p.Shirts)
                     .HasForeignKey(d => d.SeasonId)
                     .HasConstraintName("FK_Shirts_YearSeasons");
+            });
+
+            modelBuilder.Entity<ShirtSizes>(entity =>
+            {
+                entity.HasKey(e => new { e.ShirtId, e.SizeId });
+
+                entity.Property(e => e.ShirtId).HasColumnName("shirtId");
+
+                entity.Property(e => e.SizeId).HasColumnName("sizeId");
+
+                entity.HasOne(d => d.Shirt)
+                    .WithMany(p => p.ShirtSizes)
+                    .HasForeignKey(d => d.ShirtId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ShirtSizes_Shirts");
 
                 entity.HasOne(d => d.Size)
-                    .WithMany(p => p.Shirts)
+                    .WithMany(p => p.ShirtSizes)
                     .HasForeignKey(d => d.SizeId)
-                    .HasConstraintName("FK_Shirts_Size");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ShirtSizes_Size");
             });
 
             modelBuilder.Entity<Size>(entity =>

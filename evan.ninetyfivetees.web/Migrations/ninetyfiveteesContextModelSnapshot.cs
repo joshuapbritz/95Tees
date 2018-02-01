@@ -92,9 +92,6 @@ namespace evan.ninetyfivetees.web.Migrations
                     b.Property<int?>("SeasonId")
                         .HasColumnName("seasonId");
 
-                    b.Property<int?>("SizeId")
-                        .HasColumnName("sizeId");
-
                     b.Property<string>("Title")
                         .HasColumnName("title")
                         .HasMaxLength(150);
@@ -109,9 +106,22 @@ namespace evan.ninetyfivetees.web.Migrations
 
                     b.HasIndex("SeasonId");
 
+                    b.ToTable("Shirts");
+                });
+
+            modelBuilder.Entity("evan.ninetyfivetees.web.Models.ShirtSizes", b =>
+                {
+                    b.Property<int>("ShirtId")
+                        .HasColumnName("shirtId");
+
+                    b.Property<int>("SizeId")
+                        .HasColumnName("sizeId");
+
+                    b.HasKey("ShirtId", "SizeId");
+
                     b.HasIndex("SizeId");
 
-                    b.ToTable("Shirts");
+                    b.ToTable("ShirtSizes");
                 });
 
             modelBuilder.Entity("evan.ninetyfivetees.web.Models.Size", b =>
@@ -159,15 +169,28 @@ namespace evan.ninetyfivetees.web.Migrations
                         .HasForeignKey("GenderId")
                         .HasConstraintName("FK_Shirts_genders");
 
+                    b.HasOne("evan.ninetyfivetees.web.Models.Shirts", "IdNavigation")
+                        .WithOne("InverseIdNavigation")
+                        .HasForeignKey("evan.ninetyfivetees.web.Models.Shirts", "Id")
+                        .HasConstraintName("FK_Shirts_Shirts1");
+
                     b.HasOne("evan.ninetyfivetees.web.Models.YearSeasons", "Season")
                         .WithMany("Shirts")
                         .HasForeignKey("SeasonId")
                         .HasConstraintName("FK_Shirts_YearSeasons");
+                });
+
+            modelBuilder.Entity("evan.ninetyfivetees.web.Models.ShirtSizes", b =>
+                {
+                    b.HasOne("evan.ninetyfivetees.web.Models.Shirts", "Shirt")
+                        .WithMany("ShirtSizes")
+                        .HasForeignKey("ShirtId")
+                        .HasConstraintName("FK_ShirtSizes_Shirts");
 
                     b.HasOne("evan.ninetyfivetees.web.Models.Size", "Size")
-                        .WithMany("Shirts")
+                        .WithMany("ShirtSizes")
                         .HasForeignKey("SizeId")
-                        .HasConstraintName("FK_Shirts_Size");
+                        .HasConstraintName("FK_ShirtSizes_Size");
                 });
 #pragma warning restore 612, 618
         }

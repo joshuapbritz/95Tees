@@ -88,7 +88,6 @@ namespace evan.ninetyfivetees.web.Migrations
                     instock = table.Column<bool>(type: "bit", nullable: true),
                     price = table.Column<int>(type: "int", nullable: true),
                     seasonId = table.Column<int>(type: "int", nullable: true),
-                    sizeId = table.Column<int>(type: "int", nullable: true),
                     title = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true)
                 },
                 constraints: table =>
@@ -118,8 +117,26 @@ namespace evan.ninetyfivetees.web.Migrations
                         principalTable: "YearSeasons",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ShirtSizes",
+                columns: table => new
+                {
+                    shirtId = table.Column<int>(type: "int", nullable: false),
+                    sizeId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShirtSizes", x => new { x.shirtId, x.sizeId });
                     table.ForeignKey(
-                        name: "FK_Shirts_Size",
+                        name: "FK_ShirtSizes_Shirts",
+                        column: x => x.shirtId,
+                        principalTable: "Shirts",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ShirtSizes_Size",
                         column: x => x.sizeId,
                         principalTable: "Size",
                         principalColumn: "Id",
@@ -147,15 +164,21 @@ namespace evan.ninetyfivetees.web.Migrations
                 column: "seasonId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Shirts_sizeId",
-                table: "Shirts",
+                name: "IX_ShirtSizes_sizeId",
+                table: "ShirtSizes",
                 column: "sizeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "ShirtSizes");
+
+            migrationBuilder.DropTable(
                 name: "Shirts");
+
+            migrationBuilder.DropTable(
+                name: "Size");
 
             migrationBuilder.DropTable(
                 name: "Color");
@@ -168,9 +191,6 @@ namespace evan.ninetyfivetees.web.Migrations
 
             migrationBuilder.DropTable(
                 name: "YearSeasons");
-
-            migrationBuilder.DropTable(
-                name: "Size");
         }
     }
 }

@@ -9,57 +9,30 @@ using evan.ninetyfivetees.web.Models;
 
 namespace evan.ninetyfivetees.web.Controllers
 {
-    public class merchController : Controller
+    public class adminController : Controller
     {
         private readonly ninetyfiveteesContext _context;
 
-        public merchController(ninetyfiveteesContext context)
+        public adminController(ninetyfiveteesContext context)
         {
             _context = context;
         }
 
-        // GET: merch
-        public async Task<IActionResult> Index(int minPrice = 0, int maxPrice = 0, int size = 0, int gender = 0, int design = 0, int season = 0)
+        // GET: admin
+        public async Task<IActionResult> Index()
         {
-            var ninetyfiveteesContext = _context.Shirts.Include(s => s.Color).Include(s => s.Design).Include(s => s.Gender).Include(s => s.Season);
-            IQueryable<Shirts> data = ninetyfiveteesContext;
-
-            if (design != 0)
-            {
-                data = data.Where(c => c.DesignId == design);
-                ViewData["designId"] = design;
-            }
-
-            //if (size != 0)
-            //{
-            //    data = data.Where(c => c.SizeId == size);
-            //    ViewData["sizeId"] = size;
-            //}
-
-            if (gender != 0)
-            {
-                data = data.Where(c => c.GenderId == gender);
-                ViewData["genderId"] = gender;
-            }
-
-            if (season != 0)
-            {
-                data = data.Where(c => c.SeasonId == season);
-                ViewData["SeasonId"] = season;
-            }
-
-            if (maxPrice != 0)
-            {
-                data = data.Where(c => c.Price >= minPrice && c.Price <= maxPrice);
-                ViewData["minPrice"] = minPrice;
-                ViewData["maxPrice"] = maxPrice;
-            }
-
-            return View(await data.ToListAsync());
+            var ninetyfiveteesContext = _context.Shirts
+                .Include(s => s.Color)
+                .Include(s => s.Design)
+                .Include(s => s.Gender)
+                .Include(s => s.IdNavigation)
+                .Include(s => s.Season)
+                .Include(s => s.ShirtSizes)
+                .Include("ShirtSizes.Size");
+            return View(await ninetyfiveteesContext.ToListAsync());
         }
 
-        // GET: merch/Details/5
-        [ActionName("view")]
+        // GET: admin/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -67,35 +40,35 @@ namespace evan.ninetyfivetees.web.Controllers
                 return NotFound();
             }
 
-            var Ishirts = await _context.Shirts
+            var shirts = await _context.Shirts
                 .Include(s => s.Color)
                 .Include(s => s.Design)
                 .Include(s => s.Gender)
+                .Include(s => s.IdNavigation)
                 .Include(s => s.Season)
-                .Include(s => s.ShirtSizes)
-                .Include("ShirtSizes.Size")
                 .SingleOrDefaultAsync(m => m.Id == id);
-
-            if (Ishirts == null)
+            if (shirts == null)
             {
                 return NotFound();
             }
 
-            return View("Details", Ishirts);
+            return View(shirts);
         }
 
-        // GET: merch/Create
+        // GET: admin/Create
+        [HttpGet]
+        [ActionName("newshirt")]
         public IActionResult Create()
         {
             ViewData["ColorId"] = new SelectList(_context.Color, "Id", "Name");
             ViewData["DesignId"] = new SelectList(_context.Designs, "Id", "Name");
-            ViewData["SizeId"] = new SelectList(_context.ShirtSizes, "Id", "Name");
-            ViewData["SeasonId"] = new SelectList(_context.YearSeasons, "Id", "Name");
             ViewData["GenderId"] = new SelectList(_context.Genders, "Id", "Description");
-            return View();
+            ViewData["Id"] = new SelectList(_context.Shirts, "Id", "Id");
+            ViewData["SeasonId"] = new SelectList(_context.YearSeasons, "Id", "Name");
+            return View("Create");
         }
 
-        // POST: merch/Create
+        // POST: admin/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -110,11 +83,13 @@ namespace evan.ninetyfivetees.web.Controllers
             }
             ViewData["ColorId"] = new SelectList(_context.Color, "Id", "Id", shirts.ColorId);
             ViewData["DesignId"] = new SelectList(_context.Designs, "Id", "Id", shirts.DesignId);
-            //ViewData["SizeId"] = new SelectList(_context.Size, "Id", "Id", shirts.SizeId);
+            ViewData["GenderId"] = new SelectList(_context.Genders, "Id", "Id", shirts.GenderId);
+            ViewData["Id"] = new SelectList(_context.Shirts, "Id", "Id", shirts.Id);
+            ViewData["SeasonId"] = new SelectList(_context.YearSeasons, "Id", "Id", shirts.SeasonId);
             return View(shirts);
         }
 
-        // GET: merch/Edit/5
+        // GET: admin/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -129,16 +104,18 @@ namespace evan.ninetyfivetees.web.Controllers
             }
             ViewData["ColorId"] = new SelectList(_context.Color, "Id", "Id", shirts.ColorId);
             ViewData["DesignId"] = new SelectList(_context.Designs, "Id", "Id", shirts.DesignId);
-            //ViewData["SizeId"] = new SelectList(_context.Size, "Id", "Id", shirts.SizeId);
+            ViewData["GenderId"] = new SelectList(_context.Genders, "Id", "Id", shirts.GenderId);
+            ViewData["Id"] = new SelectList(_context.Shirts, "Id", "Id", shirts.Id);
+            ViewData["SeasonId"] = new SelectList(_context.YearSeasons, "Id", "Id", shirts.SeasonId);
             return View(shirts);
         }
 
-        // POST: merch/Edit/5
+        // POST: admin/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,DesignId,SizeId,ColorId,Description,Title,Price")] Shirts shirts)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ColorId,Description,DesignId,GenderId,Image,Instock,Price,SeasonId,Title")] Shirts shirts)
         {
             if (id != shirts.Id)
             {
@@ -167,11 +144,13 @@ namespace evan.ninetyfivetees.web.Controllers
             }
             ViewData["ColorId"] = new SelectList(_context.Color, "Id", "Id", shirts.ColorId);
             ViewData["DesignId"] = new SelectList(_context.Designs, "Id", "Id", shirts.DesignId);
-            //ViewData["SizeId"] = new SelectList(_context.Size, "Id", "Id", shirts.SizeId);
+            ViewData["GenderId"] = new SelectList(_context.Genders, "Id", "Id", shirts.GenderId);
+            ViewData["Id"] = new SelectList(_context.Shirts, "Id", "Id", shirts.Id);
+            ViewData["SeasonId"] = new SelectList(_context.YearSeasons, "Id", "Id", shirts.SeasonId);
             return View(shirts);
         }
 
-        // GET: merch/Delete/5
+        // GET: admin/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -182,6 +161,9 @@ namespace evan.ninetyfivetees.web.Controllers
             var shirts = await _context.Shirts
                 .Include(s => s.Color)
                 .Include(s => s.Design)
+                .Include(s => s.Gender)
+                .Include(s => s.IdNavigation)
+                .Include(s => s.Season)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (shirts == null)
             {
@@ -191,7 +173,7 @@ namespace evan.ninetyfivetees.web.Controllers
             return View(shirts);
         }
 
-        // POST: merch/Delete/5
+        // POST: admin/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

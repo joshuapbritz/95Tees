@@ -7,12 +7,12 @@ namespace evan.ninetyfivetees.web.Models
     {
         public Size()
         {
-            Shirts = new HashSet<Shirts>();
+            ShirtSizes = new HashSet<ShirtSizes>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public ICollection<Shirts> Shirts { get; set; }
+        public ICollection<ShirtSizes> ShirtSizes { get; set; }
     }
 }

@@ -40,7 +40,7 @@
         float: left;
         margin-right: 100px;
         background-position: center center;
-        background-size:cover;
+        background-size: cover;
     }
 
     .description {
@@ -75,6 +75,29 @@
             a {
                 color: #333333;
             }
+        }
+    }
+}
+
+.sizes {
+    width: 100%;
+    height: 40px;
+    white-space: nowrap;
+    font-size: 0;
+
+    .size {
+        display: inline-block;
+        height: 40px;
+        width: 40px;
+        text-align: center;
+        line-height: 40px;
+        color: #333333;
+        font-size: 18px;
+        border: solid 1px #000;
+        border-right: none;
+
+        &:nth-last-child(1) {
+            border-right: solid 1px #000;
         }
     }
 }

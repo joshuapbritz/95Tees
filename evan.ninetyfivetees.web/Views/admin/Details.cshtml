@@ -1,0 +1,84 @@
+﻿@model evan.ninetyfivetees.web.Models.Shirts
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="product-hero" style="background-image:url(@Model.Image)">
+    <div class="overlay">
+        <div class="content">
+            @Model.Title
+        </div>
+    </div>
+</div>
+
+<div id="sizesModal" class="modal"></div>
+
+@*<div>
+    <h4>Shirts</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Instock)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Instock)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Color.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Design)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Design.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Gender.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdNavigation.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Season)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Season.Id)
+        </dd>
+    </dl>
+</div>*@
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
