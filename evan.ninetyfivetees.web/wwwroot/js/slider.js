@@ -16,7 +16,7 @@ if (slides.length > 1) {
 
     function gotToSlide(exitingSlide, enteringSlide) {
         running = true;
-        Velocity(slides[enteringSlide], { right: `0px` }, { duration: 700, easing: 'easeInOutSine' });
+        Velocity(slides[enteringSlide], { right: `0px` }, { duration: 680, easing: 'easeInOutSine' }).then(() => {});
 
         Velocity(slides[exitingSlide], { right: `${window.innerWidth}px` }, { duration: 700, easing: 'easeInOutSine' }).then(() => {
             slides[exitingSlide].style.right = `-100%`;
@@ -26,8 +26,8 @@ if (slides.length > 1) {
 
     function slideBack(exitingSlide, enteringSlide) {
         running = true;
-        slides[enteringSlide].style.right = `${window.innerWidth}px`;
-        Velocity(slides[enteringSlide], { right: `0px` }, { duration: 700, easing: 'easeInOutSine' });
+        slides[enteringSlide].style.right = `100%`;
+        Velocity(slides[enteringSlide], { right: `0px` }, { duration: 680, easing: 'easeInOutSine' });
 
         Velocity(slides[exitingSlide], { right: `-100%` }, { duration: 700, easing: 'easeInOutSine' }).then(() => {
             running = false;
