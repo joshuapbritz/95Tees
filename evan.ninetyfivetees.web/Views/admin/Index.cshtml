@@ -1,5 +1,46 @@
 ﻿<h1>List Possible Actions Here</h1>
 
+<div class="card-buttons">
+    <div class="card-button">
+        <div class="content">
+            <div class="icon">
+                <i class="material-icons">shopping_basket</i>
+            </div>
+            <div class="label">Shirts</div>
+        </div>
+        <div class="action">
+            <a class="button dark" asp-action="Create">Create New</a>
+            <a class="button dark lined" asp-action="shirts">View All</a>
+        </div>
+    </div>
+
+    <div class="card-button">
+        <div class="content">
+            <div class="icon">
+                <i class="material-icons">format_size</i>
+            </div>
+            <div class="label">Shirt Sizes</div>
+        </div>
+        <div class="action">
+            <a class="button dark" href="#">Create New</a>
+            <a class="button dark lined" asp-action="shirtSizes">View All</a>
+        </div>
+    </div>
+
+    <div class="card-button">
+        <div class="content">
+            <div class="icon">
+                <i class="material-icons">playlist_add</i>
+            </div>
+            <div class="label">Shirt Types</div>
+        </div>
+        <div class="action">
+            <a class="button dark" href="#">Create New</a>
+            <a class="button dark lined" asp-action="shirtTypes">View All</a>
+        </div>
+    </div>
+</div>
+
 @*@model IEnumerable<evan.ninetyfivetees.web.Models.Shirts>
 @{
     ViewData["Title"] = "Index";

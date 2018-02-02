@@ -1,0 +1,10 @@
+﻿@model IEnumerable<evan.ninetyfivetees.web.Models.Size>
+@{
+    ViewData["Title"] = "shirtSizes";
+}
+<ul>
+    @foreach (Size size in Model)
+    {
+        <li>@size.Name</li>
+    }
+</ul>

@@ -1,0 +1,12 @@
+﻿@model IEnumerable<evan.ninetyfivetees.web.Models.Designs>
+@{
+    ViewData["Title"] = "shirtTypes";
+}
+
+<ul>
+    @foreach (Designs design in Model)
+    {
+        <li>@design.Name</li>
+    }
+</ul>
+

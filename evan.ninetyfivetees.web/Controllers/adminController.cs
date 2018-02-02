@@ -39,6 +39,16 @@ namespace evan.ninetyfivetees.web.Controllers
             return View(await ninetyfiveteesContext.ToListAsync());
         }
 
+        public async Task<IActionResult> shirtSizes() {
+            var context = await _context.Size.ToListAsync();
+            return View(context);
+        }
+
+        public async Task<IActionResult> shirtTypes() {
+            var context = await _context.Designs.ToListAsync();
+            return View(context);
+        }
+
         // GET: admin/Details/5
         public async Task<IActionResult> Details(int? id)
         {

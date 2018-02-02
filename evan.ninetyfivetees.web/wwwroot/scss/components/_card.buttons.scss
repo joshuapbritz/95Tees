@@ -1,0 +1,46 @@
+﻿.card-buttons {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+
+    .card-button {
+        width: calc(20% - 40px);
+        height: auto;
+        min-height: 100px;
+        margin: 20px;
+        text-align: center;
+        float: left;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: #eee;
+        padding: 10px 0;
+
+        .icon {
+            font-size: 10vmin;
+            padding: 15px 0;
+
+            i {
+                font-size: 15vmin;
+                color: #333;
+            }
+        }
+
+        .label {
+            font-size: 20px;
+        }
+
+        .action {
+            .button {
+                margin: 8px 0;
+            }
+        }
+    }
+
+    &::after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
