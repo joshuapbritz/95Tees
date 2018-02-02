@@ -136,16 +136,16 @@ namespace evan.ninetyfivetees.web.Controllers
                 if (result.Succeeded)
                 {
 
-                    //if (!await _roleManager.RoleExistsAsync("Admin"))
-                    //{
-                    //    var users = new IdentityRole("Admin");
-                    //    var res = await _roleManager.CreateAsync(users);
+                    if (!await _roleManager.RoleExistsAsync("Member"))
+                    {
+                        var users = new IdentityRole("Member");
+                        var res = await _roleManager.CreateAsync(users);
 
-                    //    if (res.Succeeded)
-                    //    {
+                        if (res.Succeeded)
+                        {
 
-                    //    }
-                    //}
+                        }
+                    }
 
                     _logger.LogInformation("User created a new account with password.");
 
