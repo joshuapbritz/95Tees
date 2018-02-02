@@ -1,0 +1,47 @@
+﻿.manage-account {
+    width: 100%;
+    height: auto;
+
+    .sidebar {
+        width: 400px;
+        height: auto;
+        background-color: #eee;
+        padding: 30px 0;
+        float: left;
+        position: sticky;
+        top: 0;
+        left: 0;
+
+        .nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                padding: 7px;
+                text-align: center;
+
+                a {
+                    color: #333333;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
+    .account-overview {
+        width: calc(100% - 400px);
+        float: left;
+        padding: 20px;
+
+        p {
+            width: 100%;
+        }
+    }
+
+    &::after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}

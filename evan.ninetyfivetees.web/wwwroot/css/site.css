@@ -446,6 +446,39 @@ body {
     display: table;
     clear: both; }
 
+.manage-account {
+  width: 100%;
+  height: auto; }
+  .manage-account .sidebar {
+    width: 400px;
+    height: auto;
+    background-color: #eee;
+    padding: 30px 0;
+    float: left;
+    position: sticky;
+    top: 0;
+    left: 0; }
+    .manage-account .sidebar .nav {
+      list-style: none;
+      padding: 0;
+      margin: 0; }
+      .manage-account .sidebar .nav li {
+        padding: 7px;
+        text-align: center; }
+        .manage-account .sidebar .nav li a {
+          color: #333333;
+          text-decoration: none; }
+  .manage-account .account-overview {
+    width: calc(100% - 400px);
+    float: left;
+    padding: 20px; }
+    .manage-account .account-overview p {
+      width: 100%; }
+  .manage-account::after {
+    content: '';
+    display: table;
+    clear: both; }
+
 .slide-item .overlay {
   padding: 10px; }
   .slide-item .overlay .content {
@@ -597,4 +630,18 @@ body {
     content: '';
     display: table;
     clear: both; }
+
+.noaccess-page {
+  width: 100%;
+  height: auto; }
+  .noaccess-page a {
+    color: #333333; }
+  .noaccess-page .image {
+    max-width: 300px;
+    width: 90%;
+    margin: auto;
+    padding: 20px 0; }
+    .noaccess-page .image img {
+      width: 100%;
+      height: auto; }
 

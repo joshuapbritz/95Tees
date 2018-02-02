@@ -7,6 +7,7 @@
 @import './components/product.view';
 @import './components/admin.utils';
 @import './components/card.buttons';
+@import './components/manage.account';
 
 .slide-item .overlay {
     padding: 10px;
@@ -210,5 +211,25 @@
         content:'';
         display: table;
         clear: both;
+    }
+}
+
+.noaccess-page {
+    width: 100%;
+    height: auto;
+
+    a {
+        color: #333333;
+    }
+
+    .image {
+        max-width: 300px;
+        width: 90%;
+        margin: auto;
+        padding: 20px 0;
+        img  {
+            width: 100%;
+            height: auto;
+        }
     }
 }

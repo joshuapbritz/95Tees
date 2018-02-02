@@ -356,8 +356,9 @@ namespace evan.ninetyfivetees.web.Controllers
 
 
         [HttpGet]
-        public IActionResult AccessDenied()
+        public IActionResult AccessDenied(string returnUrl = null)
         {
+            ViewData["returnURL"] = returnUrl;
             return View();
         }
 
